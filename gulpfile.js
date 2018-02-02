@@ -4,6 +4,7 @@ const gulp = require('gulp');
 const concat = require('gulp-concat');
 const uglify = require('gulp-uglify');
 const rename = require('gulp-rename');
+const sass = require('gulp-sass');
 
 gulp.task('concatScripts', function () {
   gulp.src([
@@ -19,6 +20,12 @@ gulp.task('minifyScripts', function (){
   .pipe(uglify())
   .pipe(rename('app.min.js'))
   .pipe(gulp.dest('js'));
+});
+
+gulp.task("compileSass", function(){
+  gulp.src("scss/application.scss")
+  .pipe(sass())
+  .pipe(gulp.dest('css'));
 });
 
 gulp.task('default', ['hello'], function () {
