@@ -12,7 +12,9 @@ gulp.task('concatScripts', function () {
     "js/jquery.js",
     "js/sticky/jquery.sticky.js",
     "js/main.js"])
+  .pipe(maps.init())
   .pipe(concat("app.js"))
+  .pipe(maps.write('./'))
   .pipe(gulp.dest("js"));
 });
 
