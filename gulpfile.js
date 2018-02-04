@@ -1,12 +1,13 @@
 'use strict';
 
-const gulp   = require('gulp');
-const concat = require('gulp-concat');
-const uglify = require('gulp-uglify');
-const rename = require('gulp-rename');
-const sass   = require('gulp-sass');
-const maps   = require('gulp-sourcemaps');
-const del    = require('del');
+const gulp    = require('gulp');
+const concat  = require('gulp-concat');
+const uglify  = require('gulp-uglify');
+const rename  = require('gulp-rename');
+const sass    = require('gulp-sass');
+const maps    = require('gulp-sourcemaps');
+const del     = require('del');
+const connect = require('gulp-connect');
 
 gulp.task('concatScripts', function () {
   return gulp.src([
@@ -48,7 +49,9 @@ gulp.task('build', ['minifyScripts', 'compileSass'], function () {
     .pipe(gulp.dest('dist'));
 });
 
-gulp.task('serve', ['watchFiles']);
+gulp.task('serve', ['watchFiles'], function () {
+  connect.server({port: 3000});
+});
 
 gulp.task('default', ['clean'], function(){
   gulp.start('build');
