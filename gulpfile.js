@@ -1,7 +1,6 @@
 'use strict';
 
 const gulp    = require('gulp');
-const concat  = require('gulp-concat');
 const uglify  = require('gulp-uglify');
 const rename  = require('gulp-rename');
 const sass    = require('gulp-sass');
@@ -14,12 +13,12 @@ var options = {
   dist: 'dist'
 };
 
-gulp.task('minifyScripts',['concatScripts'] , function (){
-  return gulp.src("js/app.js")
-  .pipe(uglify())
-  .pipe(rename('app.min.js'))
-  .pipe(gulp.dest('js'));
-});
+// gulp.task('minifyScripts',['concatScripts'] , function (){
+//   return gulp.src("js/app.js")
+//   .pipe(uglify())
+//   .pipe(rename('app.min.js'))
+//   .pipe(gulp.dest('js'));
+// });
 
 gulp.task("compileSass", function(){
   return gulp.src(options.src + "/scss/application.scss")
@@ -31,12 +30,13 @@ gulp.task("compileSass", function(){
 
 gulp.task('watchFiles', function(){
   gulp.watch(options.src + '/scss/**/*.scss', ['compileSass']);
-
 });
 
 gulp.task('clean', function (){
   del(['dist', 'css/application.css*', 'js/app*.js*']);
 });
+
+
 
 gulp.task('build', ['minifyScripts', 'compileSass'], function () {
   return gulp.src(['css/application.css', 'js/app.min.js', 'index.html', 'img/**', 'fonts/**'], {base: './'})
