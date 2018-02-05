@@ -8,7 +8,7 @@ const sass    = require('gulp-sass');
 const maps    = require('gulp-sourcemaps');
 const del     = require('del');
 const connect = require('gulp-connect');
-const options = {
+var options = {
   src: 'src',
   dist: 'dist'
 };
@@ -33,15 +33,15 @@ gulp.task('minifyScripts',['concatScripts'] , function (){
 });
 
 gulp.task("compileSass", function(){
-  return gulp.src(options.src + "scss/application.scss")
+  return gulp.src(options.src + "/scss/application.scss")
   .pipe(maps.init())
   .pipe(sass())
   .pipe(maps.write('./'))
-  .pipe(gulp.dest(options.src + 'css'));
+  .pipe(gulp.dest(options.src + '/css'));
 });
 
 gulp.task('watchFiles', function(){
-  gulp.watch([options.src + 'scss/**/*.scss'], ['compileSass']);
+  gulp.watch(options.src + '/scss/**/*.scss', ['compileSass']);
 
 });
 
