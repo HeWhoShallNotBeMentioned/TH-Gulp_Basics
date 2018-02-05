@@ -33,11 +33,11 @@ gulp.task('minifyScripts',['concatScripts'] , function (){
 });
 
 gulp.task("compileSass", function(){
-  return gulp.src("scss/application.scss")
+  return gulp.src(options.src + "scss/application.scss")
   .pipe(maps.init())
   .pipe(sass())
   .pipe(maps.write('./'))
-  .pipe(gulp.dest('css'));
+  .pipe(gulp.dest(options.src + 'css'));
 });
 
 gulp.task('watchFiles', function(){
